@@ -1,0 +1,111 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-grid>
+    <ion-row>
+      <ion-col text-center>
+        Welcome to Android Project!
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+  <ng-container *ngIf="userData">
+
+    <form class="form" [formGroup]="validations_form" (ngSubmit)="tryUpdate(validations_form.value)">
+      <ion-item>
+        <ion-label position="floating" color="primary">Name</ion-label>
+        <ion-input type="text" name="name" formControlName="name"></ion-input>
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validation_messages.name">
+          <div class="error-message"
+            *ngIf="validations_form.get('name').hasError(validation.type) && (validations_form.get('name').dirty || validations_form.get('name').touched)">
+            <ion-text color="danger"><small>{{ validation.message }}</small></ion-text>
+          </div>
+        </ng-container>
+      </div>
+  
+      <ion-item>
+        <ion-label position="floating" color="primary">Email</ion-label>
+        <ion-input type="email" name="email" formControlName="email"></ion-input>
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validation_messages.email">
+          <div class="error-message"
+            *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
+            <ion-text color="danger"><small>{{ validation.message }}</small></ion-text>
+          </div>
+        </ng-container>
+      </div>
+  
+      <ion-item>
+        <ion-label position="floating" color="primary">Password</ion-label>
+        <ion-input type="password" formControlName="password" class="form-controll" required></ion-input>
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validation_messages.password">
+          <div class="error-message"
+            *ngIf="validations_form.get('password').hasError(validation.type) && (validations_form.get('password').dirty || validations_form.get('password').touched)">
+            <ion-text color="danger"><small>{{ validation.message }}</small></ion-text>
+          </div>
+        </ng-container>
+      </div>
+  
+      <ion-item>
+        <ion-label position="floating" color="primary">City</ion-label>
+        <ion-input type="text" formControlName="city"></ion-input>
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validation_messages.city">
+          <div class="error-message"
+            *ngIf="validations_form.get('city').hasError(validation.type) && (validations_form.get('city').dirty || validations_form.get('city').touched)">
+            <ion-text color="danger"><small>{{ validation.message }}</small></ion-text>
+          </div>
+        </ng-container>
+      </div>
+  
+      <ion-item>
+        <ion-label position="floating" color="primary">State</ion-label>
+        <ion-input type="text" formControlName="state"></ion-input>
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validation_messages.state">
+          <div class="error-message"
+            *ngIf="validations_form.get('state').hasError(validation.type) && (validations_form.get('state').dirty || validations_form.get('state').touched)">
+            <ion-text color="danger"><small>{{ validation.message }}</small></ion-text>
+          </div>
+        </ng-container>
+      </div>
+  
+      <ion-item>
+        <ion-label position="floating" color="primary">Country</ion-label>
+        <ion-input type="text" formControlName="country"></ion-input>
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validation_messages.country">
+          <div class="error-message"
+            *ngIf="validations_form.get('country').hasError(validation.type) && (validations_form.get('country').dirty || validations_form.get('country').touched)">
+            <ion-text color="danger"><small>{{ validation.message }}</small></ion-text>
+          </div>
+        </ng-container>
+      </div>
+      
+      <ion-button class="submit-btn" expand="block" type="submit" [disabled]="!validations_form.valid">Update Profile</ion-button>
+      <label class="success-message">{{successMessage}}</label>
+      <div class="error-message ion-text-center"><ion-text color="danger"><small>{{errorMessage}}</small></ion-text></div>
+    </form>
+
+  </ng-container>
+
+</ion-content>
+<ion-footer (click)="logout()">
+  <ion-toolbar color="secondary">
+    <ion-title class="ion-text-center">Log out</ion-title>
+  </ion-toolbar>
+</ion-footer>

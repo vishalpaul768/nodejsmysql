@@ -1,0 +1,7 @@
+{
+  "name": "android-project",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
